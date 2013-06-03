@@ -1,0 +1,32 @@
+from lexer import *
+from parser import *
+
+def main():
+    # Build the lexer
+    from ply import lex,yacc
+    import sys 
+    
+    #lex.lex(debug=True)
+    yacc.yacc(debug=True)
+    
+    if len(sys.argv) > 1:
+        f = open(sys.argv[1],"r")
+        data = f.read()
+        f.close()
+    else:
+        data = ""
+        while 1:
+            try:
+                data += raw_input() + "\n"
+            except:
+                break
+            
+   #lex.input(data)
+    yacc.parse(data)
+            
+	# Tokenize
+        
+if __name__:
+    main()
+	
+

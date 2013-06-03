@@ -7,3 +7,7 @@ class Node:
               self.args = args
          else:
               self.args = [ ]
+    def dump():
+        print self.type
+        for arg in self.args:
+            arg.dump()

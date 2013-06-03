@@ -1,5 +1,8 @@
-import tokens;
-import Node;
+import lexer
+import Node
+
+# META
+#start = 'exp'
 
 #PLY doesn't have the flexibility of specifying a specific rule 
 #for every matching rule and hence we regroup the matching patterns to 
@@ -24,7 +27,8 @@ def p_let(t):
 
 def p_decs(t):
     """decs: decs dec
-           | dec"""
+           | dec
+           """
     if len(t) == 2:
         t[0] = t[1]
     else:

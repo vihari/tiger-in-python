@@ -2894,6 +2894,8 @@ class ParserReflect(object):
             return
 
         if not isinstance(tokens,(list, tuple)):
+            print tokens
+            print type(tokens)
             self.log.error("tokens must be a list or tuple")
             self.error = 1
             return
