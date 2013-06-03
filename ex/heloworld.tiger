@@ -1,0 +1,8 @@
+let
+ function sayHello(name:string) = 
+  (
+    print(name)
+  )
+in
+ sayHello("Compile")
+end

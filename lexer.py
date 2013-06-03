@@ -8,14 +8,17 @@ tokens = (
     'STRING',
 
     #esc-seq's
-    'NEW_LINE',
-    'TAB',
-    'SPACE',
+    #parser or lexer shouldn't be worrying about these
+    #so wont be declared at all; these will be stripped off 
+    #by not declaring them.
+    #'NEW_LINE',
+    #'TAB',
+    #'SPACE',
 
     #This is the block enclosed in /.../ and \s,\t,\r,\f and \n 
     # are all ignored
     'SP_BLOCK',
-    'COMMENT',
+    #'COMMENT',
     
     #keywords
     'ARRAY',
@@ -62,8 +65,7 @@ tokens = (
     'EQ',
     'NE'
     );
-print tokens;
-print type(tokens)
+
 reservedKeywords = (
     'array',
     'break',
@@ -121,10 +123,10 @@ def t_ignore_NEWLINE(t):
     r"\n+";
     t.lexer.lineno += len(t.value);
 
-t_TAB =                   r"[\ \t]+";
+t_ignore =                   ' \t';
 
 #Though nested comments are allowed, the regexp will match the largest matching string.
-t_ignore_COMMENT =        r"///*.*/*//";
+t_ignore_COMMENT =        r'\/\*.*\*\/';
 
 #There should be a space after /../
 def t_SP_BLOCK(t):

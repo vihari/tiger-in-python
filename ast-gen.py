@@ -1,5 +1,25 @@
+import pydot
 from lexer import *
 from parser import *
+
+def grph(edges,filename):
+   g=pydot.graph_from_edges(edges) 
+   if filename:
+       f = filename + ".svg"
+   else:
+       f = "graph.svg"
+   g.write_svg(f, prog='dot') 
+        
+def ast_gen(ast):
+    nodes = []
+    edges = []
+    ast.nodes(nodes)
+    ast.edges(edges)
+    #nodes=set(nodes)
+    #edges=set(edges)
+    #print nodes
+    #print edges
+    grph(edges,"8q")
 
 def main():
     # Build the lexer
@@ -7,7 +27,7 @@ def main():
     import sys 
     
     #lex.lex(debug=True)
-    yacc.yacc()#debug=True)
+    yacc.yacc(debug=False)
     
     if len(sys.argv) > 1:
         f = open(sys.argv[1],"r")
@@ -21,8 +41,8 @@ def main():
             except:
                 break
             
-   #lex.input(data)
-    yacc.parse(data)
+    ast = yacc.parse(data,lexer = lex.lex(debug=False))	
+    ast_gen(ast)
             
 	# Tokenize
         

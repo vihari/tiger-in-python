@@ -1,0 +1,6 @@
+let
+ funtion sayHello() = 
+  
+in
+ sayHello('Compile')
+end
