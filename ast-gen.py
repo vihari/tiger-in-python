@@ -1,6 +1,7 @@
 import pydot
 from lexer import *
 from parser import *
+#from sem import *
 
 def grph(edges,filename):
    g=pydot.graph_from_edges(edges) 
@@ -22,29 +23,31 @@ def ast_gen(ast):
     grph(edges,"8q")
 
 def main():
+    gr_plot = True
     # Build the lexer
     from ply import lex,yacc
     import sys 
-    
+   
     #lex.lex(debug=True)
     yacc.yacc(debug=False)
     
     if len(sys.argv) > 1:
-        f = open(sys.argv[1],"r")
-        data = f.read()
-        f.close()
+       f = open(sys.argv[1],"r")
+       data = f.read()
+       f.close()
     else:
-        data = ""
-        while 1:
-            try:
-                data += raw_input() + "\n"
-            except:
-                break
-            
+       data = ""
+       while 1:
+          try:
+             data += raw_input() + "\n"
+          except:
+             break
+          
     ast = yacc.parse(data,lexer = lex.lex(debug=False))	
-    ast_gen(ast)
-            
-	# Tokenize
+    if gr_plot:
+       ast_gen(ast)
+       
+       #check(ast)
         
 if __name__:
     main()

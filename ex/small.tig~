@@ -1,0 +1,8 @@
+let
+ type intArray = array of int
+ var y := 2
+ var x :int := 1
+ var z :=3
+in
+ print (z)
+end

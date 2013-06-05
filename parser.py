@@ -41,7 +41,7 @@ def p_decs(t):
     if len(t) == 2:
         t[0] = t[1]
     else:
-        t[0] = Node('var_dec',t[1],t[2])
+        t[0] = Node('decs',t[1],t[2])
 
 def p_dec(t):
     """dec : tdec
@@ -78,7 +78,7 @@ def p_fdec(t):
     if len(t)==10:
         t[0] = Node('proc',t[2],t[4],t[7],t[9])
     elif len(t)==9:
-        t[0] = Node('void_proc',t[2],t[6],t[8])
+        t[0] = Node('proc_void',t[2],t[6],t[8])
     elif len(t)==8:
         t[0] = Node('func',t[2],t[4],t[7])
     else:
@@ -268,15 +268,35 @@ def p_seqexp(t):
 
 def p_const(t):
     '''
-    const : INTEGER
-          | STRING
-          | NIL
+    const : integer
+          | string
+          | nil
     '''
 
     if(debug):
         print str(t.lexer.lineno)+"const";
 
     t[0] = t[1]
+
+def p_integer(t):
+    '''
+    integer : INTEGER
+    '''
+    if(debug):
+        print str(t.lexer.lineno)+"integer";
+    t[0] = Node('int',t[1])
+
+def p_string(t):
+    'string : STRING'
+    if(debug):
+        print str(t.lexer.lineno)+"string";
+    t[0] = Node('str',t[1])    
+
+def p_nill(t):
+    'nil : NIL'
+    if(debug):
+        print str(t.lexer.lineno)+"nil";
+    t[0] = Node('nil',t[1])    
 
 def p_call(t):
     '''

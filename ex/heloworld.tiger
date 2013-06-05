@@ -1,5 +1,5 @@
 let
- function sayHello(name:string) = 
+ function sayHello(name:string):int = 
   (
     print(name)
   )
